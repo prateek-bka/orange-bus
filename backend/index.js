@@ -10,6 +10,10 @@ app.use(cors());
 
 const port = process.env.PORT || 7500;
 
+const userRoute = require("./routes/userRoutes");
+
+app.use("/api/users", userRoute);
+
 app.listen(port, async () => {
   try {
     await connection;
