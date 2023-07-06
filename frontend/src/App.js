@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import PublicRoute from "./components/PublicRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -13,9 +14,9 @@ function App() {
           <Route
             path="/"
             element={
-              <PublicRoute>
+              <ProtectedRoute>
                 <Home />
-              </PublicRoute>
+              </ProtectedRoute>
             }
           />
           <Route

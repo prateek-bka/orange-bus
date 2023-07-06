@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { SetUser } from "../redux/usersSlice";
 
 const ProtectedRoute = ({ children }) => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const ProtectedRoute = ({ children }) => {
     } catch (error) {
       setLoading(false);
       localStorage.removeItem("token");
-      message.error(response.data.message);
+      message.error(error.data.message);
       navigate("/login");
     }
   };
