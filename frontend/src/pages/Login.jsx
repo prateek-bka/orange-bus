@@ -3,14 +3,18 @@ import React from "react";
 import loginPagePic from "../resources/images/login_page_pic.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { HideLoading, ShowLoading } from "../redux/alertsSlice";
 
 const Login = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const onFinish = async (values) => {
     // console.log(values);
     try {
+      dispatch(ShowLoading());
       const response = await axios.post("/api/users/login", values);
+      dispatch(HideLoading());
       if (response.data.success) {
         message.success(response.data.message);
         localStorage.setItem("token", response.data.data);
@@ -19,6 +23,7 @@ const Login = () => {
         message.error(response.data.message);
       }
     } catch (error) {
+      dispatch(HideLoading());
       message.error(error.message);
     }
   };

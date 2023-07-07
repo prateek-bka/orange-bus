@@ -3,18 +3,24 @@ import React from "react";
 import registerPagePic from "../resources/images/register_page_pic.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { HideLoading, ShowLoading } from "../redux/alertsSlice";
 
 const Register = () => {
+  const dispatch = useDispatch();
   const onFinish = async (values) => {
     // console.log(values);
     try {
+      dispatch(ShowLoading());
       const response = await axios.post("/api/users/register", values);
+      dispatch(HideLoading());
       if (response.data.success) {
         message.success(response.data.message);
       } else {
         message.error(response.data.message);
       }
     } catch (error) {
+      dispatch(HideLoading());
       message.error(error.message);
     }
   };
