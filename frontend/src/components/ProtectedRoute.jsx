@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SetUser } from "../redux/usersSlice";
 import { HideLoading, ShowLoading } from "../redux/alertsSlice";
+import DefaultLayout from "./DefaultLayout";
 
 const ProtectedRoute = ({ children }) => {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const ProtectedRoute = ({ children }) => {
     }
   }, []);
 
-  return <>{loading ? <>Loading...</> : <>{children}</>}</>;
+  return <>{!loading && <DefaultLayout>{children}</DefaultLayout>}</>;
 };
 
 export default ProtectedRoute;
