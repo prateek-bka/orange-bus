@@ -11,8 +11,10 @@ app.use(cors());
 const port = process.env.PORT || 7500;
 
 const userRoute = require("./routes/userRoutes");
+const busesRoute = require("./routes/busesRoute");
 
 app.use("/api/users", userRoute);
+app.use("/api/buses", busesRoute);
 
 app.listen(port, async () => {
   try {
