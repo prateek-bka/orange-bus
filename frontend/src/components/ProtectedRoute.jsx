@@ -10,7 +10,7 @@ import DefaultLayout from "./DefaultLayout";
 const ProtectedRoute = ({ children }) => {
   const dispatch = useDispatch();
   // const [loading, setLoading] = useState(false);
-  const { loading } = useSelector((state) => state.alerts);
+  const { user } = useSelector((state) => state.users);
   const navigate = useNavigate();
 
   const validateToken = async () => {
@@ -51,7 +51,7 @@ const ProtectedRoute = ({ children }) => {
     }
   }, []);
 
-  return <>{!loading && <DefaultLayout>{children}</DefaultLayout>}</>;
+  return <>{user && <DefaultLayout>{children}</DefaultLayout>}</>;
 };
 
 export default ProtectedRoute;

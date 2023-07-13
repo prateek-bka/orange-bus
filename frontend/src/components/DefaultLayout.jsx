@@ -53,9 +53,9 @@ const DefaultLayout = ({ children }) => {
   const menuToBeRendered = user?.isAdmin ? adminMenu : userMenu;
 
   return (
-    <div className="flex flex-column p-5 w-full border-4 border-yellow-500 border-dashed gap-4">
+    <div className="flex flex-column p-2 w-full border-4 border-yellow-500 border-dashed gap-4 w-80">
       {/* sidebar */}
-      <div className="bg-orange-400 p-5 w-80 border-4 border-green-500">
+      <div className="bg-orange-400 p-2 w-80 border-4 border-green-500">
         <h1 className="text-lg font-bold text-green-800">Welcome</h1>
         <h1 className="text-lg text-indigo-700 font-semibold">
           Name: {user?.name}
@@ -91,9 +91,7 @@ const DefaultLayout = ({ children }) => {
         })}
       </div>
       {/* Body */}
-      <div className="bg-slate-100 p-5 w-full border-4 border-red-500">
-        {children}
-      </div>
+      <div className="p-2 w-full border-4 border-red-500 w-80">{children}</div>
     </div>
   );
 };
