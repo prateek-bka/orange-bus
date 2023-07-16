@@ -1,13 +1,15 @@
 import { Button, Form, message } from "antd";
 import React from "react";
 import registerPagePic from "../resources/images/register_page_pic.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../redux/alertsSlice";
 
 const Register = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const onFinish = async (values) => {
     // console.log(values);
     try {
@@ -16,6 +18,7 @@ const Register = () => {
       dispatch(HideLoading());
       if (response.data.success) {
         message.success(response.data.message);
+        navigate("/login");
       } else {
         message.error(response.data.message);
       }
