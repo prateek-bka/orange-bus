@@ -13,19 +13,27 @@ const SeatSelection = ({ selectedSeats, setSelectedSeats, bookedBus }) => {
 
   return (
     <div>
-     
+      <h3 className="text-xl font-bold text-green-700 p-2 m-2">
+        Capacity Left{" "}
+        <b>{bookedBus.busCapacity - bookedBus.seatsBooked.length}</b>
+      </h3>
       <Row gutter={[10, 10]}>
         {Array.from(Array(capacity).keys()).map((seat) => {
+          const isSeatBooked = bookedBus.seatsBooked.includes(seat + 1);
+          const isSelected = selectedSeats.includes(seat + 1);
+          const seatClass = isSeatBooked
+            ? "bg-gray-500"
+            : isSelected
+            ? "bg-orange-500 text-white text-xl font-bold"
+            : "";
+
           return (
-            <Col span={6}>
+            <Col span={6} key={seat}>
               <div
-                className={
-                  // check available seat
-                  selectedSeats.includes(seat + 1)
-                    ? "bg-orange-500 text-white text-xl font-bold border-2 border-orange-300 p-1 m-1"
-                    : "border-2 border-orange-300 p-1 m-1"
+                className={`border-2 border-orange-300 p-1 m-1 ${seatClass}`}
+                onClick={() =>
+                  !isSeatBooked && selectedOrUnselectedSeats(seat + 1)
                 }
-                onClick={() => selectedOrUnselectedSeats(seat + 1)}
               >
                 {seat + 1}
               </div>
