@@ -3,6 +3,7 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const { connection } = require("./config/dbConfig");
+const path = require("path");
 
 const app = express();
 app.use(express.json());
@@ -17,6 +18,13 @@ const bookingsRoute = require("./routes/bookingsRoute");
 app.use("/api/users", userRoute);
 app.use("/api/buses", busesRoute);
 app.use("/api/bookings", bookingsRoute);
+
+//static files
+app.use(express.static(path.join(__dirname, "./frontend/build")));
+
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "./frontend/build/index.html"))
+);
 
 app.listen(port, async () => {
   try {

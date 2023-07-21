@@ -98,6 +98,7 @@ const AdminBuses = () => {
     {
       title: "Seats Booked",
       dataIndex: "seatsBooked",
+      render: (seatsBooked) => seatsBooked.join(","),
     },
     {
       title: "Bus Status",

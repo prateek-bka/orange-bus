@@ -106,6 +106,7 @@ const BookNow = () => {
               stripeKey="pk_test_51NUtVaSDCYJjaMYAf4ZBSHVBh1TFAxB3ihdamLKe9OtycQYWHNGHrN57M1ucpBX3dakUinH2wXmaK3SOAdNJbz5j0034RWY0LJ"
               billingAddress
               amount={selectedSeats.length * bookedBus.fare * 100}
+              currency="inr"
             >
               <button
                 className="border-2 p-2 bg-orange-600 text-slate-100 text-xl"
